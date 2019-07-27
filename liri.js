@@ -4,8 +4,6 @@ var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
 
 
-
-
 var action = process.argv[2];
 
 switch (action) {
@@ -17,9 +15,13 @@ switch (action) {
       song();
       break;
     
-    case "do-what-it-says":
+    case "random-this":
       random();
       break;
+
+    case "just-run":
+        run();
+        break;
     
     case "concert-this":
       concert();
@@ -34,7 +36,7 @@ switch (action) {
         var axios = require("axios");
         var artist = process.argv[3];
         if (!artist) {
-            movieName = "Rammstein";
+            artist = "Rammstein";
           }
         var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
         axios.get(queryUrl).then(
@@ -64,7 +66,8 @@ switch (action) {
         console.log("Title: " + response.data.Title);
         console.log("Release Year: " + response.data.Year);
         console.log("Rating: " + response.data.Rated);
-        console.log("Tomatoe Rating: " + response.data.Ratings[2].Value);
+        console.log("IMDB Rating: " + response.data.Ratings[1].Value);
+        console.log("Rotten Tomatoes Rating: " + response.data.Ratings[2].Value);
         console.log("Country: " + response.data.Country);
         console.log("Language: " + response.data.Language);
         console.log("Plot: " + response.data.Plot);
@@ -74,10 +77,10 @@ switch (action) {
         }
         );
       }
-
+      
       function random() {
         var fs = require("fs");
-        fs.readFile("random.txt", "utf8", function(error, data) {
+        fs.readFile("random2.txt", "utf8", function(error, data) {
         
         if (error) {
             return console.log(error);
@@ -117,3 +120,21 @@ switch (action) {
         } 
       });
     }
+
+    function run() {
+        var fs = require("fs");
+        fs.readFile("random.txt", "utf8", function(err, data) {
+            if (err){ 
+                return console.log(err);
+            }
+        console.log(data);
+        
+        var dataArr = data.split(',');
+        process.argv[3] = dataArr[1];
+        song(dataArr[1]);
+        
+        
+    
+        }
+        );
+      }
