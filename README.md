@@ -34,6 +34,6 @@ The app has four main features that can be triggered by using specific commands 
 
 5. **Random Text:** The random text function **random-this** reaches out to a text file with random text and runs it on the CLI.
 
-![Random-This-Example](/ScreenCaps/ConcertThisExample.PNG)
+![Random-This-Example](/ScreenCaps/RandomThisExample.PNG)
 
 **Please remember that the app requires that users enter requests using a specific commands or otherwise the app will not be able to run the functions!**
